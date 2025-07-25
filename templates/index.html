@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>TL;DR Tool</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📄 TL;DR Tool</h1>
+    <p>Upload een PDF of plak een e-mail. De tool vat het samen in bulletpoints via ChatGPT.</p>
+
+    <form method="POST" enctype="multipart/form-data">
+      <label>Upload PDF:</label><br>
+      <input type="file" name="pdf"><br><br>
+
+      <label>Of plak e-mailtekst:</label><br>
+      <textarea name="text" rows="10" cols="60"></textarea><br><br>
+
+      <button type="submit">Samenvatten</button>
+    </form>
+
+    {% if error %}
+      <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if summary %}
+      <h2>Samenvatting:</h2>
+      <pre>{{ summary }}</pre>
+    {% endif %}
+  </div>
+</body>
+</html>
